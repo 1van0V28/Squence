@@ -1,13 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Squence.Core;
 
 namespace Squence
 {
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
+
+        private EntityManager _entityManager;
+        private TextureStore _textureStore;
         private SpriteBatch _spriteBatch;
+        private DrawingManager _drawingManager;
+        private InputManager _inputManager;
 
         public Game1()
         {
@@ -19,14 +25,19 @@ namespace Squence
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            _entityManager = new EntityManager();
+            _entityManager.InitStartEntities(GraphicsDevice);
+
+            _textureStore = new TextureStore(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _drawingManager = new DrawingManager(_spriteBatch, _textureStore);
+            _inputManager = new InputManager(_entityManager.Hero);
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
         }
 
@@ -37,6 +48,8 @@ namespace Squence
 
             // TODO: Add your update logic here
 
+            _inputManager.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -45,6 +58,7 @@ namespace Squence
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _drawingManager.Draw(_entityManager.GetRenderables());
 
             base.Draw(gameTime);
         }

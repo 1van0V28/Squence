@@ -1,7 +1,40 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Programming\\LocalReps\\Squence\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\entities\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:entities\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\core\\texturestore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:core\\texturestore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\core\\irenderable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:core\\irenderable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\core\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:core\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\core\\entitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:core\\entitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|d:\\programming\\localreps\\squence\\core\\drawingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E1243EE-9AC6-4450-AC5A-B048B6CBC9D2}|Squence.csproj|solutionrelative:core\\drawingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +42,112 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\Game1.cs",
+              "RelativeDocumentMoniker": "Game1.cs",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\Game1.cs",
+              "RelativeToolTip": "Game1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T17:47:47.62Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-13T18:04:43.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Hero.cs",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\Entities\\Hero.cs",
+              "RelativeDocumentMoniker": "Entities\\Hero.cs",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\Entities\\Hero.cs",
+              "RelativeToolTip": "Entities\\Hero.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T17:57:01.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TextureStore.cs",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\Core\\TextureStore.cs",
+              "RelativeDocumentMoniker": "Core\\TextureStore.cs",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\Core\\TextureStore.cs",
+              "RelativeToolTip": "Core\\TextureStore.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T17:55:28.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRenderable.cs",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\Core\\IRenderable.cs",
+              "RelativeDocumentMoniker": "Core\\IRenderable.cs",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\Core\\IRenderable.cs",
+              "RelativeToolTip": "Core\\IRenderable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T17:55:23.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InputManager.cs",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\Core\\InputManager.cs",
+              "RelativeDocumentMoniker": "Core\\InputManager.cs",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\Core\\InputManager.cs",
+              "RelativeToolTip": "Core\\InputManager.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAYAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T17:53:21.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EntityManager.cs",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\Core\\EntityManager.cs",
+              "RelativeDocumentMoniker": "Core\\EntityManager.cs",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\Core\\EntityManager.cs",
+              "RelativeToolTip": "Core\\EntityManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T17:51:06.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DrawingManager.cs",
+              "DocumentMoniker": "D:\\Programming\\LocalReps\\Squence\\Core\\DrawingManager.cs",
+              "RelativeDocumentMoniker": "Core\\DrawingManager.cs",
+              "ToolTip": "D:\\Programming\\LocalReps\\Squence\\Core\\DrawingManager.cs",
+              "RelativeToolTip": "Core\\DrawingManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T17:42:42.895Z",
+              "EditorCaption": ""
             }
           ]
         }
