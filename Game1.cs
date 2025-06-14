@@ -2,11 +2,15 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Squence.Core;
+using Squence.Data;
 
 namespace Squence
 {
     public class Game1 : Game
     {
+        private readonly int _tileSize = 64;
+        private readonly TileMapDefinition _tileMapDefinition = LevelMap.GetTileMapDefinition();
+
         private GraphicsDeviceManager _graphics;
 
         private EntityManager _entityManager;
@@ -14,12 +18,17 @@ namespace Squence
         private SpriteBatch _spriteBatch;
         private DrawingManager _drawingManager;
         private InputManager _inputManager;
+        private TileMapManager _tileMapManager;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            _graphics.PreferredBackBufferWidth = _tileMapDefinition.width * _tileSize;
+            _graphics.PreferredBackBufferHeight = _tileMapDefinition.height * _tileSize;
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
@@ -32,6 +41,9 @@ namespace Squence
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _drawingManager = new DrawingManager(_spriteBatch, _textureStore);
             _inputManager = new InputManager(_entityManager.Hero);
+
+            _tileMapManager = new TileMapManager(_tileMapDefinition);
+            _tileMapManager.InitTileMap();
 
             base.Initialize();
         }
@@ -58,8 +70,9 @@ namespace Squence
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            _drawingManager.Draw(_entityManager.GetRenderables());
-
+            _drawingManager.DrawTileMap(_tileMapManager);
+            _drawingManager.DrawEntities(_entityManager);
+            
             base.Draw(gameTime);
         }
     }
