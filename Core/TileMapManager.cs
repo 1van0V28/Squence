@@ -9,7 +9,6 @@ namespace Squence.Core
     internal class TileMapManager(TileMapDefinition tileMapDefinition)
     {
         private readonly Tile[,] _tiles = new Tile[tileMapDefinition.width, tileMapDefinition.height];
-        private List<List<Vector2>> _enemyPath; // TODO путей несколько
 
         public void InitTileMap()
         {

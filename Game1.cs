@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Squence.Core;
 using Squence.Data;
+using Squence.Entities;
 
 namespace Squence
 {
@@ -45,6 +46,10 @@ namespace Squence
             _tileMapManager = new TileMapManager(_tileMapDefinition);
             _tileMapManager.InitTileMap();
 
+            // тестирование передвижение врага
+            var enemyPath = _tileMapDefinition.EnemyPathesList[0];
+            _entityManager.AddEntity(new Enemy(_tileMapDefinition.EnemyPathesList[0], _tileSize));
+
             base.Initialize();
         }
 
@@ -59,8 +64,8 @@ namespace Squence
                 Exit();
 
             // TODO: Add your update logic here
-
             _inputManager.Update(gameTime);
+            _entityManager.Update(gameTime);
 
             base.Update(gameTime);
         }

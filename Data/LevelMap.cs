@@ -33,8 +33,8 @@ namespace Squence.Data
             List<List<Point>> enemyPathesList = [
                 [ 
                     new Point(10, 0), new Point(10, 2), new Point(2, 2),
-                    new Point(2, 2), new Point(2, 4), new Point(4, 4),
-                    new Point(4, 6), new Point(0, 6)
+                    new Point(2, 4), new Point(4, 4), new Point(4, 6),
+                    new Point(0, 6)
                 ],
                 [
                     new Point(10, 0), new Point(10, 2), new Point(8, 2),
