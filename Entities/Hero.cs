@@ -13,25 +13,12 @@ namespace Squence.Entities
         public Vector2 TexturePosition { get => _texturePosition; }
 
         private Vector2 _texturePosition = new(graphicsDevice.Viewport.Width / 2, graphicsDevice.Viewport.Height / 2);
-        public readonly float HeroSpeed = 100f;
+        private readonly float _heroSpeed = 100f;
 
-        public void MoveUp(float updatedHeroSpeed)
+        public void Move(Vector2 direction, GameTime gameTime)
         {
-            _texturePosition.Y -= updatedHeroSpeed;
-        }
-        public void MoveDown(float updatedHeroSpeed)
-        {
-            _texturePosition.Y += updatedHeroSpeed;
-        }
-
-        public void MoveLeft(float updatedHeroSpeed)
-        {
-            _texturePosition.X -= updatedHeroSpeed;
-        }
-
-        public void MoveRight(float updatedHeroSpeed)
-        {
-            _texturePosition.X += updatedHeroSpeed;
+            var updatedHeroSpeed = _heroSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _texturePosition += direction * updatedHeroSpeed;
         }
     }
 }

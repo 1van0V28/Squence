@@ -17,6 +17,11 @@ namespace Squence.Entities
 
         public void Update(GameTime gameTime)
         {
+            Move(gameTime);
+        }
+
+        private void Move(GameTime gameTime)
+        {
             // если враг пришёл к цели, то завершаем движение
             if (_currentTargetIndex >= enemyPath.Count)
             {
@@ -46,6 +51,6 @@ namespace Squence.Entities
                 distanceToMove = distanceToTarget;
 
             _texturePosition += direction * distanceToMove;
-        }
+        } 
     }
 }

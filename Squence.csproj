@@ -16,12 +16,24 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Content\ball.png" />
+    <None Remove="Content\bullet_fire.png" />
+    <None Remove="Content\bullet_ice.png" />
+    <None Remove="Content\bullet_lightning.png" />
     <None Remove="Content\tile_build_zone.png" />
     <None Remove="Content\tile_grass.png" />
     <None Remove="Content\tile_road.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ball.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bullet_fire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bullet_ice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bullet_lightning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tile_build_zone.png">

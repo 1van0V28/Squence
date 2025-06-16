@@ -35,19 +35,14 @@ namespace Squence
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _entityManager = new EntityManager();
-            _entityManager.InitStartEntities(GraphicsDevice);
-
+            _entityManager = new EntityManager(GraphicsDevice);
             _textureStore = new TextureStore(GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _drawingManager = new DrawingManager(_spriteBatch, _textureStore);
-            _inputManager = new InputManager(_entityManager.Hero);
-
+            _inputManager = new InputManager(_entityManager);
             _tileMapManager = new TileMapManager(_tileMapDefinition);
-            _tileMapManager.InitTileMap();
 
             // тестирование передвижение врага
-            var enemyPath = _tileMapDefinition.EnemyPathesList[0];
             _entityManager.AddEntity(new Enemy(_tileMapDefinition.EnemyPathesList[0], _tileSize));
 
             base.Initialize();

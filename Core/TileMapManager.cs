@@ -6,12 +6,19 @@ using System.Collections.Generic;
 namespace Squence.Core
 {
     // обработка данных уровня
-    internal class TileMapManager(TileMapDefinition tileMapDefinition)
+    internal class TileMapManager
     {
-        private readonly Tile[,] _tiles = new Tile[tileMapDefinition.width, tileMapDefinition.height];
+        private Tile[,] _tiles;
 
-        public void InitTileMap()
+        public TileMapManager(TileMapDefinition tileMapDefinition)
         {
+            InitTileMap(tileMapDefinition);
+        }
+
+        public void InitTileMap(TileMapDefinition tileMapDefinition)
+        {
+            _tiles = new Tile[tileMapDefinition.width, tileMapDefinition.height];
+
             FillTiles(tileMapDefinition.RoadTiles, TileType.Road); // заполняем дороги
             FillTiles(tileMapDefinition.BuildZoneTiles, TileType.BuildZone); // заполняем зоны строительства
 
@@ -40,9 +47,9 @@ namespace Squence.Core
         {
             List<IRenderable> renderableTiles = [];
 
-            for (var i = 0; i < tileMapDefinition.width; i++)
+            for (var i = 0; i < _tiles.GetLength(0); i++)
             {
-                for (var j = 0; j < tileMapDefinition.height; j++)
+                for (var j = 0; j < _tiles.GetLength(1); j++)
                 {
                     renderableTiles.Add(_tiles[i, j]);
                 }

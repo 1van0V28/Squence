@@ -8,13 +8,19 @@ namespace Squence.Core
 {
     internal class EntityManager
     {
-        public Hero Hero { get; private set; }
+        private Hero _hero;
         private readonly Dictionary<Guid, IRenderable> _entities = [];
 
-        public void InitStartEntities(GraphicsDevice graphicsDevice)
+        // при создании происходит создание стартовых сущностей
+        public EntityManager(GraphicsDevice graphicsDevice)
         {
-            Hero = new Hero(graphicsDevice);
-            _entities.Add(Hero.Guid, Hero);
+            InitEntityManager(graphicsDevice);
+        }
+
+        public void InitEntityManager(GraphicsDevice graphicsDevice)
+        {
+            _hero = new Hero(graphicsDevice);
+            _entities.Add(_hero.Guid, _hero);
         }
 
         public void Update(GameTime gameTime)
@@ -41,6 +47,20 @@ namespace Squence.Core
         public IEnumerable<IRenderable> GetRenderables()
         {
             return _entities.Values;
+        }
+
+        public void MoveHero(Vector2 direction, GameTime gameTime)
+        {
+            if (direction != Vector2.Zero)
+            {
+                direction.Normalize();
+                _hero.Move(direction, gameTime);
+            }
+        }
+
+        public Vector2 GetHeroPosition()
+        {
+            return _hero.TexturePosition;
         }
     }
 }

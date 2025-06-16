@@ -5,42 +5,64 @@ using Squence.Entities;
 namespace Squence.Core
 {
     // создаём новые сущности и обновляем параметры существующих
-    internal class InputManager(Hero hero)
+    internal class InputManager(EntityManager entityManager)
     {
+        private bool _isMouseLeftPressed = false;
         public void Update(GameTime gameTime)
         {
             var keyboardState = Keyboard.GetState();
+            var mouseState = Mouse.GetState();
 
             UpdateHero(gameTime, keyboardState);
+            UpdateBullets(gameTime, mouseState);
         }
 
         private void UpdateHero(GameTime gameTime, KeyboardState keyboardState)
         {
-            var updatedHeroSpeed = hero.HeroSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            MoveHero(keyboardState, updatedHeroSpeed);
+            MoveHero(gameTime, keyboardState);
         }
 
-        private void MoveHero(KeyboardState keyboardState, float updatedHeroSpeed)
+        private void MoveHero(GameTime gameTime, KeyboardState keyboardState)
         {
+            var direction = Vector2.Zero;
+
             if (keyboardState.IsKeyDown(Keys.W)) 
             {
-                hero.MoveUp(updatedHeroSpeed);
+                direction.Y -= 1;
             } 
-
             if (keyboardState.IsKeyDown(Keys.S))
             {
-                hero.MoveDown(updatedHeroSpeed);
+                direction.Y += 1;
             }
-
             if (keyboardState.IsKeyDown(Keys.A))
             {
-                hero.MoveLeft(updatedHeroSpeed);
+                direction.X -= 1;
             }
-
             if (keyboardState.IsKeyDown(Keys.D))
             {
-                hero.MoveRight(updatedHeroSpeed);
+                direction.X += 1;
+            }
+
+            entityManager.MoveHero(direction, gameTime);
+        }
+
+        private void UpdateBullets(GameTime gameTime, MouseState mouseState)
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed && !_isMouseLeftPressed)
+            {
+                var mousePosition = new Vector2(mouseState.X, mouseState.Y);
+                var heroPosition = entityManager.GetHeroPosition();
+
+                var direction = mousePosition - heroPosition;
+                direction.Normalize();
+                entityManager.AddEntity(new Bullet(heroPosition, direction, BulletType.Ice));
+
+                _isMouseLeftPressed = true;
+            }
+
+            if (mouseState.LeftButton == ButtonState.Released)
+            {
+                _isMouseLeftPressed = false;
             }
         }
     }

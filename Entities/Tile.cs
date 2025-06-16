@@ -13,11 +13,11 @@ namespace Squence.Entities
 
     internal class Tile(TileType tileType, Vector2 tilePosition): IRenderable
     {
-        public TileType TileType { get; private set; } = tileType;
+        public TileType TileType = tileType;
         public Guid Guid { get; } = Guid.NewGuid();
         public string TextureName { get; } = GetTileTextureName(tileType);
         public Vector2 TexturePosition { get; private set; } = tilePosition;
-        
+
         private static string GetTileTextureName(TileType tileType)
         {
             return tileType switch
