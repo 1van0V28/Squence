@@ -51,11 +51,11 @@ namespace Squence.Core
             if (mouseState.LeftButton == ButtonState.Pressed && !_isMouseLeftPressed)
             {
                 var mousePosition = new Vector2(mouseState.X, mouseState.Y);
-                var heroPosition = entityManager.GetHeroPosition();
+                var heroPosition = entityManager.Hero.TexturePosition;
 
                 var direction = mousePosition - heroPosition;
                 direction.Normalize();
-                entityManager.AddEntity(new Bullet(heroPosition, direction, BulletType.Ice));
+                entityManager.AddBullet(new Bullet(heroPosition, direction, BulletType.Ice));
 
                 _isMouseLeftPressed = true;
             }

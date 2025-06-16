@@ -8,5 +8,7 @@ namespace Squence.Core
         Guid Guid { get; }
         string TextureName { get; }
         Vector2 TexturePosition { get; }
+        int TextureWidth { get; }
+        int TextureHeight { get; }
     }
 }

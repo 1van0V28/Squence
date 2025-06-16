@@ -9,7 +9,6 @@ namespace Squence
 {
     public class Game1 : Game
     {
-        private readonly int _tileSize = 64;
         private readonly TileMapDefinition _tileMapDefinition = LevelMap.GetTileMapDefinition();
 
         private GraphicsDeviceManager _graphics;
@@ -20,6 +19,7 @@ namespace Squence
         private DrawingManager _drawingManager;
         private InputManager _inputManager;
         private TileMapManager _tileMapManager;
+        private CollisionManager _collisionManager;
 
         public Game1()
         {
@@ -27,8 +27,8 @@ namespace Squence
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = _tileMapDefinition.width * _tileSize;
-            _graphics.PreferredBackBufferHeight = _tileMapDefinition.height * _tileSize;
+            _graphics.PreferredBackBufferWidth = _tileMapDefinition.width * _tileMapDefinition.tileSize;
+            _graphics.PreferredBackBufferHeight = _tileMapDefinition.height * _tileMapDefinition.tileSize;
             _graphics.ApplyChanges();
         }
 
@@ -41,9 +41,10 @@ namespace Squence
             _drawingManager = new DrawingManager(_spriteBatch, _textureStore);
             _inputManager = new InputManager(_entityManager);
             _tileMapManager = new TileMapManager(_tileMapDefinition);
+            _collisionManager = new CollisionManager(_entityManager);
 
             // тестирование передвижение врага
-            _entityManager.AddEntity(new Enemy(_tileMapDefinition.EnemyPathesList[0], _tileSize));
+            _entityManager.AddEnemy(new Enemy(_tileMapDefinition.EnemyPathesList[0], _tileMapDefinition.tileSize));
 
             base.Initialize();
         }
@@ -61,6 +62,7 @@ namespace Squence
             // TODO: Add your update logic here
             _inputManager.Update(gameTime);
             _entityManager.Update(gameTime);
+            _collisionManager.Update();
 
             base.Update(gameTime);
         }

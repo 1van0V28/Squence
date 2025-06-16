@@ -8,6 +8,7 @@ namespace Squence.Data
     {
         public static TileMapDefinition GetTileMapDefinition()
         {
+            var tileSize = 64;
             var width = 14;
             var height = 11;
 
@@ -49,6 +50,7 @@ namespace Squence.Data
                 ];
             
             return new TileMapDefinition(
+                tileSize,
                 width,
                 height,
                 roadTiles,

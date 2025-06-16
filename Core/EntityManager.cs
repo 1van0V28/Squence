@@ -8,8 +8,9 @@ namespace Squence.Core
 {
     internal class EntityManager
     {
-        private Hero _hero;
-        private readonly Dictionary<Guid, IRenderable> _entities = [];
+        public Hero Hero { get; private set; }
+        public readonly Dictionary<Guid, Bullet> Bullets = [];
+        public readonly Dictionary<Guid, Enemy> Enemies = [];
 
         // при создании происходит создание стартовых сущностей
         public EntityManager(GraphicsDevice graphicsDevice)
@@ -19,34 +20,55 @@ namespace Squence.Core
 
         public void InitEntityManager(GraphicsDevice graphicsDevice)
         {
-            _hero = new Hero(graphicsDevice);
-            _entities.Add(_hero.Guid, _hero);
+            Hero = new Hero(graphicsDevice);
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (var entity in _entities)
+            UpdateBullets(gameTime);
+            UpdateEnemies(gameTime);
+        }
+
+        private void UpdateBullets(GameTime gameTime)
+        {
+            foreach (var bullet in Bullets.Values)
             {
-                if (entity.Value is IUpdatable updateable)
-                {
-                    updateable.Update(gameTime);
-                }
+                bullet.Update(gameTime);
             }
         }
 
-        public void AddEntity(IRenderable entity)
+        private void UpdateEnemies(GameTime gameTime)
         {
-            _entities[entity.Guid] = entity;
+            foreach (var enemy in Enemies.Values)
+            {
+                if (enemy.HealthPoints <= 0)
+                {
+                    RemoveEnemy(enemy.Guid);
+                } else
+                {
+                    enemy.Update(gameTime);
+                } 
+            }
         }
 
-        public void RemoveEntity(Guid guid)
+        public void AddBullet(Bullet bullet)
         {
-            _entities.Remove(guid);
+            Bullets[bullet.Guid] = bullet;
         }
 
-        public IEnumerable<IRenderable> GetRenderables()
+        public void AddEnemy(Enemy enemy)
         {
-            return _entities.Values;
+            Enemies[enemy.Guid] = enemy;
+        }
+
+        public void RemoveBullet(Guid guid)
+        {
+            Bullets.Remove(guid);
+        }
+
+        public void RemoveEnemy(Guid guid)
+        {
+            Enemies.Remove(guid);
         }
 
         public void MoveHero(Vector2 direction, GameTime gameTime)
@@ -54,13 +76,14 @@ namespace Squence.Core
             if (direction != Vector2.Zero)
             {
                 direction.Normalize();
-                _hero.Move(direction, gameTime);
+                Hero.Move(direction, gameTime);
             }
         }
 
-        public Vector2 GetHeroPosition()
+        // TODO учитывать тип атаки и тип врага
+        public void HitEnemy(Guid guid)
         {
-            return _hero.TexturePosition;
+            Enemies[guid].Hit();
         }
     }
 }

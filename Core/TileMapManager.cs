@@ -8,19 +8,21 @@ namespace Squence.Core
     // обработка данных уровня
     internal class TileMapManager
     {
+        public TileMapDefinition TileMapDefinition { get; private set; }
         private Tile[,] _tiles;
 
         public TileMapManager(TileMapDefinition tileMapDefinition)
         {
+            TileMapDefinition = tileMapDefinition;
+            _tiles = new Tile[tileMapDefinition.width, tileMapDefinition.height];
+
             InitTileMap(tileMapDefinition);
         }
 
         public void InitTileMap(TileMapDefinition tileMapDefinition)
         {
-            _tiles = new Tile[tileMapDefinition.width, tileMapDefinition.height];
-
-            FillTiles(tileMapDefinition.RoadTiles, TileType.Road); // заполняем дороги
-            FillTiles(tileMapDefinition.BuildZoneTiles, TileType.BuildZone); // заполняем зоны строительства
+            FillTiles(tileMapDefinition.RoadTiles, TileType.Road, tileMapDefinition); // заполняем дороги
+            FillTiles(tileMapDefinition.BuildZoneTiles, TileType.BuildZone, tileMapDefinition); // заполняем зоны строительства
 
             // заполняем остальные пустые клетки травой
             for (var x = 0; x < tileMapDefinition.width; x++)
@@ -29,17 +31,17 @@ namespace Squence.Core
                 {
                     if (_tiles[x, y] == null)
                     {
-                        _tiles[x, y] = new Tile(TileType.Grass, new Vector2(x, y));
+                        _tiles[x, y] = new Tile(TileType.Grass, new Vector2(x, y), tileMapDefinition.tileSize);
                     }
                 }
             }
         }
 
-        private void FillTiles(List<Point> tilesList, TileType tileType)
+        private void FillTiles(List<Point> tilesList, TileType tileType, TileMapDefinition tileMapDefinition)
         {
             foreach (var tile in tilesList)
             {
-                _tiles[tile.X, tile.Y] = new Tile(tileType, new Vector2(tile.X, tile.Y));
+                _tiles[tile.X, tile.Y] = new Tile(tileType, new Vector2(tile.X, tile.Y), tileMapDefinition.tileSize);
             }
         }
 

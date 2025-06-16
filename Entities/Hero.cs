@@ -11,8 +11,10 @@ namespace Squence.Entities
         public Guid Guid { get; } = Guid.NewGuid();
         public string TextureName { get; } = "Content/ball.png";
         public Vector2 TexturePosition { get => _texturePosition; }
-
         private Vector2 _texturePosition = new(graphicsDevice.Viewport.Width / 2, graphicsDevice.Viewport.Height / 2);
+        public int TextureWidth { get; } = 64;
+        public int TextureHeight { get; } = 64;
+
         private readonly float _heroSpeed = 100f;
 
         public void Move(Vector2 direction, GameTime gameTime)
