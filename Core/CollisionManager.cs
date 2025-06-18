@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 
 namespace Squence.Core
 {
     internal class CollisionManager(EntityManager entityManager)
     {
+        private readonly EntityManager _entityManager = entityManager;
         public void Update()
         {
             HandleBulletEnemyCollisions();
@@ -12,20 +12,20 @@ namespace Squence.Core
 
         private void HandleBulletEnemyCollisions()
         {
-            foreach (var bullet in entityManager.Bullets.Values)
+            foreach (var bullet in _entityManager.Bullets.Values)
             {
-                foreach (var enemy in entityManager.Enemies.Values)
+                foreach (var enemy in _entityManager.Enemies.Values)
                 {
-                    if (isColliding(bullet, enemy))
+                    if (IsColliding(bullet, enemy))
                     {
-                        entityManager.RemoveBullet(bullet.Guid);
-                        entityManager.HitEnemy(enemy.Guid);
+                        _entityManager.RemoveBullet(bullet.Guid);
+                        _entityManager.HitEnemy(enemy.Guid);
                     }
                 }
             }
         }
 
-        private bool isColliding(ICollidable aEntity, ICollidable bEntity)
+        private static bool IsColliding(ICollidable aEntity, ICollidable bEntity)
         {
             var posA = aEntity.Center;
             var posB = bEntity.Center;

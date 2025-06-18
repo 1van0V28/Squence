@@ -13,7 +13,7 @@ namespace Squence.Entities
 
     internal class Tile(TileType tileType, Vector2 tilePosition, int tileSize): IRenderable
     {
-        public TileType TileType = tileType;
+        public readonly TileType TileType = tileType;
         public Guid Guid { get; } = Guid.NewGuid();
         public string TextureName { get; } = GetTileTextureName(tileType);
         public Vector2 TexturePosition { get; private set; } = tilePosition;

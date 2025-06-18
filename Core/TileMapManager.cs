@@ -9,12 +9,12 @@ namespace Squence.Core
     internal class TileMapManager
     {
         public TileMapDefinition TileMapDefinition { get; private set; }
-        private Tile[,] _tiles;
+        private readonly Tile[,] _tiles;
 
         public TileMapManager(TileMapDefinition tileMapDefinition)
         {
             TileMapDefinition = tileMapDefinition;
-            _tiles = new Tile[tileMapDefinition.width, tileMapDefinition.height];
+            _tiles = new Tile[tileMapDefinition.Width, tileMapDefinition.Height];
 
             InitTileMap(tileMapDefinition);
         }
@@ -25,13 +25,13 @@ namespace Squence.Core
             FillTiles(tileMapDefinition.BuildZoneTiles, TileType.BuildZone, tileMapDefinition); // заполняем зоны строительства
 
             // заполняем остальные пустые клетки травой
-            for (var x = 0; x < tileMapDefinition.width; x++)
+            for (var x = 0; x < tileMapDefinition.Width; x++)
             {
-                for (var y = 0; y < tileMapDefinition.height; y++)
+                for (var y = 0; y < tileMapDefinition.Height; y++)
                 {
                     if (_tiles[x, y] == null)
                     {
-                        _tiles[x, y] = new Tile(TileType.Grass, new Vector2(x, y), tileMapDefinition.tileSize);
+                        _tiles[x, y] = new Tile(TileType.Grass, new Vector2(x, y), tileMapDefinition.TileSize);
                     }
                 }
             }
@@ -41,7 +41,7 @@ namespace Squence.Core
         {
             foreach (var tile in tilesList)
             {
-                _tiles[tile.X, tile.Y] = new Tile(tileType, new Vector2(tile.X, tile.Y), tileMapDefinition.tileSize);
+                _tiles[tile.X, tile.Y] = new Tile(tileType, new Vector2(tile.X, tile.Y), tileMapDefinition.TileSize);
             }
         }
 

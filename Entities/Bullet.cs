@@ -17,11 +17,11 @@ namespace Squence.Entities
         public string TextureName { get; } = GetBulletTextureName(bulletType);
         public Vector2 TexturePosition { get => _texturePosition; }
         private Vector2 _texturePosition = bulletPosition;
-        public int TextureWidth { get; } = 96;
-        public int TextureHeight { get; } = 96;
+        public int TextureWidth { get; } = 64;
+        public int TextureHeight { get; } = 64;
        
-        public Vector2 Center { get => new(_texturePosition.X + 96 / 2, _texturePosition.Y + 96 / 2); }
-        public float Radius { get; } = 96 / 2;
+        public Vector2 Center { get => new(_texturePosition.X + 64 / 2, _texturePosition.Y + 64 / 2); }
+        public float Radius { get; } = 64 / 2;
 
         private readonly BulletType _bulletType = bulletType;
         private readonly float _bulletSpeed = 500f;

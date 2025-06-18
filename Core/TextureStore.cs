@@ -6,6 +6,8 @@ namespace Squence.Core
 {
     internal class TextureStore(GraphicsDevice graphicsDevice)
     {
+        private readonly GraphicsDevice _graphicsDevice = graphicsDevice;
+
         private readonly Dictionary<string, Texture2D> _textures = [];
 
         // ленивая загрузка текстур
@@ -15,7 +17,7 @@ namespace Squence.Core
             {
                 // чтение изображения из файла
                 using var stream = File.OpenRead(textureName);
-                _textures[textureName] = Texture2D.FromStream(graphicsDevice, stream);
+                _textures[textureName] = Texture2D.FromStream(_graphicsDevice, stream);
             }
 
             return _textures[textureName];

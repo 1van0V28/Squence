@@ -11,7 +11,7 @@ namespace Squence
     {
         private readonly TileMapDefinition _tileMapDefinition = LevelMap.GetTileMapDefinition();
 
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
 
         private EntityManager _entityManager;
         private TextureStore _textureStore;
@@ -20,6 +20,7 @@ namespace Squence
         private InputManager _inputManager;
         private TileMapManager _tileMapManager;
         private CollisionManager _collisionManager;
+        private WaveManager _waveManager;
 
         public Game1()
         {
@@ -27,8 +28,8 @@ namespace Squence
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = _tileMapDefinition.width * _tileMapDefinition.tileSize;
-            _graphics.PreferredBackBufferHeight = _tileMapDefinition.height * _tileMapDefinition.tileSize;
+            _graphics.PreferredBackBufferWidth = _tileMapDefinition.Width * _tileMapDefinition.TileSize;
+            _graphics.PreferredBackBufferHeight = _tileMapDefinition.Height * _tileMapDefinition.TileSize;
             _graphics.ApplyChanges();
         }
 
@@ -42,9 +43,10 @@ namespace Squence
             _inputManager = new InputManager(_entityManager);
             _tileMapManager = new TileMapManager(_tileMapDefinition);
             _collisionManager = new CollisionManager(_entityManager);
+            _waveManager = new WaveManager(_entityManager, _tileMapDefinition.WavesList);
 
             // тестирование передвижение врага
-            _entityManager.AddEnemy(new Enemy(_tileMapDefinition.EnemyPathesList[0], _tileMapDefinition.tileSize));
+            _entityManager.AddEnemy(new Enemy(_tileMapDefinition.EnemyPathesList[0], _tileMapDefinition.TileSize));
 
             base.Initialize();
         }
@@ -63,6 +65,7 @@ namespace Squence
             _inputManager.Update(gameTime);
             _entityManager.Update(gameTime);
             _collisionManager.Update();
+            _waveManager.Update(gameTime);
 
             base.Update(gameTime);
         }

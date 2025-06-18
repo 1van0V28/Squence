@@ -12,7 +12,8 @@ namespace Squence.Data
             var width = 14;
             var height = 11;
 
-            List<Point> roadTiles = [
+            List<Point> roadTiles = 
+            [
                 new Point(10, 0), new Point(10, 1), new Point(10, 2), new Point(9, 2),
                 new Point(8, 2), new Point(7, 2), new Point(6, 2), new Point(5, 2),
                 new Point(4, 2), new Point(3, 2), new Point(2, 2), new Point(2, 3),
@@ -48,14 +49,56 @@ namespace Squence.Data
                     new Point(0, 6)
                 ],
                 ];
-            
+
+            List<Wave> wavesList = [
+                new Wave(
+                    [
+                        new WavePhase(5, enemyPathesList[0], 0.4f),
+                        new WavePhase(4, enemyPathesList[1], 0.5f)
+                    ],
+                    2f
+                ),
+                new Wave(
+                    [
+                        new WavePhase(6, enemyPathesList[2], 0.35f),
+                        new WavePhase(5, enemyPathesList[0], 0.4f),
+                        new WavePhase(5, enemyPathesList[1], 0.5f)
+                    ],
+                    3f
+                ),
+                new Wave(
+                    [
+                        new WavePhase(8, enemyPathesList[2], 0.3f),
+                        new WavePhase(6, enemyPathesList[1], 0.35f),
+                        new WavePhase(4, enemyPathesList[0], 0.4f)
+                    ],
+                    2.5f
+                ),
+                new Wave(
+                    [
+                        new WavePhase(5, enemyPathesList[0], 0.4f),
+                        new WavePhase(5, enemyPathesList[1], 0.4f),
+                        new WavePhase(6, enemyPathesList[2], 0.3f)
+                    ],
+                    3f
+                ),
+                new Wave(
+                    [
+                        new WavePhase(7, enemyPathesList[1], 0.35f),
+                        new WavePhase(8, enemyPathesList[2], 0.3f)
+                    ],
+                    2f
+                )
+                ];
+
             return new TileMapDefinition(
                 tileSize,
                 width,
                 height,
                 roadTiles,
                 buildZoneTiles,
-                enemyPathesList
+                enemyPathesList,
+                wavesList
                 );
             
         }

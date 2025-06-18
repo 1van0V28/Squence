@@ -15,9 +15,10 @@ namespace Squence.Entities
         public int TextureHeight { get; } = 64;
 
         public Vector2 Center { get => new(_texturePosition.X + 64 / 2, _texturePosition.Y + 64 / 2); }
-        public float Radius => 64 / 2;
+        public float Radius { get; } = 64 / 2;
 
         private int _currentTargetIndex = 1;
+        private readonly int _tileSize = tileSize;
         public int HealthPoints { get; private set; } = 3;
         public readonly float EnemySpeed = 100f;
 
@@ -34,7 +35,7 @@ namespace Squence.Entities
                 return;
             }
 
-            Vector2 target = new Vector2(enemyPath[_currentTargetIndex].X, enemyPath[_currentTargetIndex].Y) * tileSize;
+            Vector2 target = new Vector2(enemyPath[_currentTargetIndex].X, enemyPath[_currentTargetIndex].Y) * _tileSize;
             Vector2 direction = target - _texturePosition;
             float distanceToTarget = direction.Length();
 
@@ -44,7 +45,7 @@ namespace Squence.Entities
                 _currentTargetIndex++;
                 if (_currentTargetIndex >= enemyPath.Count)
                     return;
-                target = new Vector2(enemyPath[_currentTargetIndex].X, enemyPath[_currentTargetIndex].Y) * tileSize;
+                target = new Vector2(enemyPath[_currentTargetIndex].X, enemyPath[_currentTargetIndex].Y) * _tileSize;
                 direction = target - _texturePosition;
                 distanceToTarget = direction.Length();
             }

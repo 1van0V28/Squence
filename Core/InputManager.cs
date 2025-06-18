@@ -7,6 +7,8 @@ namespace Squence.Core
     // создаём новые сущности и обновляем параметры существующих
     internal class InputManager(EntityManager entityManager)
     {
+        private readonly EntityManager _entityManager = entityManager;
+
         private bool _isMouseLeftPressed = false;
         public void Update(GameTime gameTime)
         {
@@ -43,7 +45,7 @@ namespace Squence.Core
                 direction.X += 1;
             }
 
-            entityManager.MoveHero(direction, gameTime);
+            _entityManager.MoveHero(direction, gameTime);
         }
 
         private void UpdateBullets(GameTime gameTime, MouseState mouseState)
@@ -51,11 +53,11 @@ namespace Squence.Core
             if (mouseState.LeftButton == ButtonState.Pressed && !_isMouseLeftPressed)
             {
                 var mousePosition = new Vector2(mouseState.X, mouseState.Y);
-                var heroPosition = entityManager.Hero.TexturePosition;
+                var heroPosition = _entityManager.Hero.TexturePosition;
 
                 var direction = mousePosition - heroPosition;
                 direction.Normalize();
-                entityManager.AddBullet(new Bullet(heroPosition, direction, BulletType.Ice));
+                _entityManager.AddBullet(new Bullet(heroPosition, direction, BulletType.Ice));
 
                 _isMouseLeftPressed = true;
             }
