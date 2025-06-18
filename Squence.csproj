@@ -19,6 +19,11 @@
     <None Remove="Content\bullet_fire.png" />
     <None Remove="Content\bullet_ice.png" />
     <None Remove="Content\bullet_lightning.png" />
+    <None Remove="Content\Font\Nudge Orb 1.fnt" />
+    <None Remove="Content\Font\Nudge Orb 1_0.png" />
+    <None Remove="Content\Font\Nudge Orb.fnt" />
+    <None Remove="Content\Font\Nudge Orb_0.png" />
+    <None Remove="Content\heart.png" />
     <None Remove="Content\tile_build_zone.png" />
     <None Remove="Content\tile_grass.png" />
     <None Remove="Content\tile_road.png" />
@@ -36,6 +41,21 @@
     <Content Include="Content\bullet_lightning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Font\Nudge Orb 1.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Nudge Orb 1_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Nudge Orb.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Nudge Orb_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\heart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\tile_build_zone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -47,6 +67,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+	<PackageReference Include="MonoGame.Extended" Version="4.1.0" />
 	<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
   </ItemGroup>
 </Project>

@@ -26,27 +26,27 @@ namespace Squence.Data
                 new Point(12, 8), new Point(12, 9), new Point(11, 9), new Point(10, 9),
                 new Point(9, 9), new Point(8, 9), new Point(7, 9), new Point(7, 8),
                 new Point(6, 8), new Point(5, 8), new Point(4, 8), new Point(4, 7)
-                ];
+            ];
             List<Point> buildZoneTiles = [
                 new Point(3, 3), new Point(7, 3), new Point(7, 5),
                 new Point(11, 6), new Point(5, 7), new Point(11, 8)
-                ];
+            ];
             
             List<List<Point>> enemyPathesList = [
                 [ 
-                    new Point(10, 0), new Point(10, 2), new Point(2, 2),
+                    new Point(10, -1), new Point(10, 2), new Point(2, 2),
                     new Point(2, 4), new Point(4, 4), new Point(4, 6),
-                    new Point(0, 6)
+                    new Point(-1, 6)
                 ],
                 [
-                    new Point(10, 0), new Point(10, 2), new Point(8, 2),
-                    new Point(8, 6), new Point(0, 6),
+                    new Point(10, -1), new Point(10, 2), new Point(8, 2),
+                    new Point(8, 6), new Point(-1, 6),
                 ],
                 [
-                    new Point(13, 5), new Point(10, 5), new Point(10, 7),
+                    new Point(14, 5), new Point(10, 5), new Point(10, 7),
                     new Point(12, 7), new Point(12, 9), new Point(7, 9),
                     new Point(7, 8), new Point(4, 8), new Point(4, 6),
-                    new Point(0, 6)
+                    new Point(-1, 6)
                 ],
                 ];
 

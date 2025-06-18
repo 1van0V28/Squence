@@ -3,10 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Squence.Core
 {
-    internal class DrawingManager(SpriteBatch spriteBatch, TextureStore textureStore)
+    internal class DrawingManager(SpriteBatch spriteBatch, TextureStore textureStore, GameState gameState)
     {
         private readonly SpriteBatch _spriteBatch = spriteBatch;
         private readonly TextureStore _textureStore = textureStore;
+        private readonly GameState _gameState = gameState;
 
         // отрисовка сущностей, расположенных в EntityManager
         public void DrawEntities(EntityManager entityManager)
@@ -15,6 +16,7 @@ namespace Squence.Core
             DrawHero(entityManager);
             DrawBullets(entityManager);
             DrawEnemies(entityManager);
+            DrawHealthPoints();
             _spriteBatch.End();
         }
 
@@ -73,9 +75,46 @@ namespace Squence.Core
                             tileMapManager.TileMapDefinition.TileSize,
                             tileMapManager.TileMapDefinition.TileSize
                             ),
-                    Color.White);
+                    Color.White
+                    );
             }
             _spriteBatch.End();
+        }
+
+        public void DrawHUD()
+        {
+            DrawHealthPoints();
+        }
+
+        public void DrawHealthPoints()
+        {
+            Vector2 heartPosition = new (20, 20);
+            Vector2 healthPointsPosition = new (heartPosition.X + 96 + 10, heartPosition.Y + 20);
+
+            _spriteBatch.Draw(
+                    texture: _textureStore.Get("Content/heart.png"),
+                    destinationRectangle: new Rectangle(
+                            (int)heartPosition.X,
+                            (int)heartPosition.Y,
+                            96,
+                            96
+                            ),
+                    Color.White
+                    );
+            DrawBitmapText($"{_gameState.HealthPoints}", healthPointsPosition, Color.White);
+        }
+
+        private void DrawBitmapText(string text, Vector2 position, Color color)
+        {
+            foreach (var glyph in _textureStore.BitmapFont.GetGlyphs(text, position))
+            {
+                if (glyph.Character == null)
+                {
+                    continue;
+                }
+                var region = glyph.Character.TextureRegion;
+                _spriteBatch.Draw(region.Texture, glyph.Position, region.Bounds, color);
+            }
         }
     }
 }

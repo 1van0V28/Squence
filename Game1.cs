@@ -9,6 +9,7 @@ namespace Squence
 {
     public class Game1 : Game
     {
+        private readonly GameState _gameState = new();
         private readonly TileMapDefinition _tileMapDefinition = LevelMap.GetTileMapDefinition();
 
         private readonly GraphicsDeviceManager _graphics;
@@ -36,10 +37,10 @@ namespace Squence
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _entityManager = new EntityManager(GraphicsDevice);
+            _entityManager = new EntityManager(_gameState, GraphicsDevice);
             _textureStore = new TextureStore(GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _drawingManager = new DrawingManager(_spriteBatch, _textureStore);
+            _drawingManager = new DrawingManager(_spriteBatch, _textureStore, _gameState);
             _inputManager = new InputManager(_entityManager);
             _tileMapManager = new TileMapManager(_tileMapDefinition);
             _collisionManager = new CollisionManager(_entityManager);
@@ -58,7 +59,9 @@ namespace Squence
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
+                || Keyboard.GetState().IsKeyDown(Keys.Escape)
+                || _gameState.HealthPoints <= 0)
                 Exit();
 
             // TODO: Add your update logic here

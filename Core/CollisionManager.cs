@@ -16,7 +16,7 @@ namespace Squence.Core
             {
                 foreach (var enemy in _entityManager.Enemies.Values)
                 {
-                    if (IsColliding(bullet, enemy))
+                    if (IsRadiusColliding(bullet, enemy))
                     {
                         _entityManager.RemoveBullet(bullet.Guid);
                         _entityManager.HitEnemy(enemy.Guid);
@@ -25,7 +25,7 @@ namespace Squence.Core
             }
         }
 
-        private static bool IsColliding(ICollidable aEntity, ICollidable bEntity)
+        private static bool IsRadiusColliding(ICollidable aEntity, ICollidable bEntity)
         {
             var posA = aEntity.Center;
             var posB = bEntity.Center;

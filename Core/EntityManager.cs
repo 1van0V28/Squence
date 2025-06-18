@@ -12,9 +12,12 @@ namespace Squence.Core
         public readonly Dictionary<Guid, Bullet> Bullets = [];
         public readonly Dictionary<Guid, Enemy> Enemies = [];
 
+        private readonly GameState _gameState;
+
         // при создании происходит создание стартовых сущностей
-        public EntityManager(GraphicsDevice graphicsDevice)
+        public EntityManager(GameState gameState, GraphicsDevice graphicsDevice)
         {
+            _gameState = gameState;
             InitEntityManager(graphicsDevice);
         }
 
@@ -44,7 +47,12 @@ namespace Squence.Core
                 if (enemy.HealthPoints <= 0)
                 {
                     RemoveEnemy(enemy.Guid);
-                } else
+                }
+                else if (enemy.IsReachGoal) {
+                    RemoveEnemy(enemy.Guid);
+                    _gameState.HandleEnemyBreakthrough();
+                }
+                else
                 {
                     enemy.Update(gameTime);
                 } 

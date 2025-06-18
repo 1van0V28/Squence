@@ -17,8 +17,10 @@ namespace Squence.Entities
         public Vector2 Center { get => new(_texturePosition.X + 64 / 2, _texturePosition.Y + 64 / 2); }
         public float Radius { get; } = 64 / 2;
 
+        
         private int _currentTargetIndex = 1;
         private readonly int _tileSize = tileSize;
+        public bool IsReachGoal { get; private set; } = false;
         public int HealthPoints { get; private set; } = 3;
         public readonly float EnemySpeed = 100f;
 
@@ -32,6 +34,7 @@ namespace Squence.Entities
             // если враг пришёл к цели, то завершаем движение
             if (_currentTargetIndex >= enemyPath.Count)
             {
+                IsReachGoal = true;
                 return;
             }
 
