@@ -9,5 +9,10 @@
         {
             HealthPoints--;
         }
+
+        public void HandleCoinCollection()
+        {
+            MoneyCount++;
+        }
     }
 }

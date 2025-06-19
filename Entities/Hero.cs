@@ -6,7 +6,7 @@ using System;
 
 namespace Squence.Entities
 {
-    internal class Hero(GraphicsDevice graphicsDevice) : IRenderable
+    internal class Hero(GraphicsDevice graphicsDevice) : IRenderable, ICollidable
     {
         public Guid Guid { get; } = Guid.NewGuid();
         public string TextureName { get; } = "Content/ball.png";
@@ -15,7 +15,10 @@ namespace Squence.Entities
         public int TextureWidth { get; } = 64;
         public int TextureHeight { get; } = 64;
 
-        private readonly float _heroSpeed = 100f;
+        public Vector2 Center { get => new(TexturePosition.X + TextureWidth / 2, TexturePosition.Y + TextureHeight / 2); }
+        public float Radius { get; } = 64 / 2;
+
+        private readonly float _heroSpeed = 200f;
 
         public void Move(Vector2 direction, GameTime gameTime)
         {

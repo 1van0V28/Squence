@@ -22,7 +22,7 @@ namespace Squence.Entities
         private readonly int _tileSize = tileSize;
         public bool IsReachGoal { get; private set; } = false;
         public int HealthPoints { get; private set; } = 3;
-        public readonly float EnemySpeed = 100f;
+        private readonly float _enemySpeed = 100f;
 
         public void Update(GameTime gameTime)
         {
@@ -54,7 +54,7 @@ namespace Squence.Entities
             }
 
             direction.Normalize();
-            float distanceToMove = EnemySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            float distanceToMove = _enemySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // чтобы не перескочить точку
             if (distanceToMove > distanceToTarget)

@@ -11,6 +11,8 @@ namespace Squence.Core
         public Hero Hero { get; private set; }
         public readonly Dictionary<Guid, Bullet> Bullets = [];
         public readonly Dictionary<Guid, Enemy> Enemies = [];
+        public readonly Dictionary<Guid, Coin> Coins = [];
+        private Random _random = new();
 
         private readonly GameState _gameState;
 
@@ -30,6 +32,7 @@ namespace Squence.Core
         {
             UpdateBullets(gameTime);
             UpdateEnemies(gameTime);
+            UpdateCoins(gameTime);
         }
 
         private void UpdateBullets(GameTime gameTime)
@@ -47,6 +50,7 @@ namespace Squence.Core
                 if (enemy.HealthPoints <= 0)
                 {
                     RemoveEnemy(enemy.Guid);
+                    ScatterCoins(enemy);
                 }
                 else if (enemy.IsReachGoal) {
                     RemoveEnemy(enemy.Guid);
@@ -56,6 +60,21 @@ namespace Squence.Core
                 {
                     enemy.Update(gameTime);
                 } 
+            }
+        }
+
+        private void UpdateCoins(GameTime gameTime)
+        {
+            foreach (var coin in Coins.Values)
+            {
+                if (coin.IsDisappeared)
+                {
+                    RemoveCoin(coin.Guid);
+                }
+                else
+                {
+                    coin.Update(gameTime);
+                }
             }
         }
 
@@ -69,6 +88,11 @@ namespace Squence.Core
             Enemies[enemy.Guid] = enemy;
         }
 
+        public void AddCoin(Coin coin)
+        {
+            Coins[coin.Guid] = coin;
+        }
+
         public void RemoveBullet(Guid guid)
         {
             Bullets.Remove(guid);
@@ -77,6 +101,11 @@ namespace Squence.Core
         public void RemoveEnemy(Guid guid)
         {
             Enemies.Remove(guid);
+        }
+
+        public void RemoveCoin(Guid guid)
+        {
+            Coins.Remove(guid);
         }
 
         public void MoveHero(Vector2 direction, GameTime gameTime)
@@ -92,6 +121,27 @@ namespace Squence.Core
         public void HitEnemy(Guid guid)
         {
             Enemies[guid].Hit();
+        }
+
+        private void ScatterCoins(Enemy enemy)
+        {
+            int coinCount = _random.Next(2, 4);
+            for (int i = 0; i < coinCount; i++)
+            {
+                var offset = RandomInCircle(enemy.Radius);
+                var coinPosition = enemy.TexturePosition + offset;
+                AddCoin(new Coin(coinPosition));
+            }
+        }
+
+        private Vector2 RandomInCircle(float radius)
+        {
+            var angle = _random.NextDouble() * MathF.PI * 2;
+            var r = _random.NextDouble() * radius;
+            return new Vector2(
+                (float)(Math.Cos(angle) * r),
+                (float)(Math.Sin(angle) * r)
+            );
         }
     }
 }

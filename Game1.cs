@@ -43,7 +43,7 @@ namespace Squence
             _drawingManager = new DrawingManager(_spriteBatch, _textureStore, _gameState);
             _inputManager = new InputManager(_entityManager);
             _tileMapManager = new TileMapManager(_tileMapDefinition);
-            _collisionManager = new CollisionManager(_entityManager);
+            _collisionManager = new CollisionManager(_entityManager, _gameState);
             _waveManager = new WaveManager(_entityManager, _tileMapDefinition.WavesList);
 
             // тестирование передвижение врага

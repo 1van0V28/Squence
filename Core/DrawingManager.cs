@@ -16,7 +16,8 @@ namespace Squence.Core
             DrawHero(entityManager);
             DrawBullets(entityManager);
             DrawEnemies(entityManager);
-            DrawHealthPoints();
+            DrawCoins(entityManager);
+            DrawHUD();
             _spriteBatch.End();
         }
 
@@ -59,6 +60,23 @@ namespace Squence.Core
             }
         }
 
+        private void DrawCoins(EntityManager entityManager)
+        {
+            foreach (var coin in entityManager.Coins.Values)
+            {
+                _spriteBatch.Draw(
+                    texture: _textureStore.Get(coin.TextureName),
+                    destinationRectangle: new Rectangle(
+                            (int)coin.TexturePosition.X,
+                            (int)coin.TexturePosition.Y,
+                            coin.TextureWidth,
+                            coin.TextureHeight
+                            ),
+                    Color.White
+                    );
+            }
+        }
+
         // отрисовка клеток, расположенных в TileMapManager
         public void DrawTileMap(TileMapManager tileMapManager)
         {
@@ -83,25 +101,27 @@ namespace Squence.Core
 
         public void DrawHUD()
         {
-            DrawHealthPoints();
+            // отображаем количество жизней до проигрыша
+            DrawIconWithValue(new Vector2(20, 20), 80, "Content/heart.png", $"{_gameState.HealthPoints}"); 
+            // отображаем количество собранных монет
+            DrawIconWithValue(new Vector2(200, 22), 80, "Content/chest.png", $"{_gameState.MoneyCount}"); 
         }
 
-        public void DrawHealthPoints()
+        private void DrawIconWithValue(Vector2 iconPosition, int iconSize, string iconName, string value)
         {
-            Vector2 heartPosition = new (20, 20);
-            Vector2 healthPointsPosition = new (heartPosition.X + 96 + 10, heartPosition.Y + 20);
+            Vector2 valuePosition = new (iconPosition.X + iconSize + 10, iconPosition.Y + 20);
 
             _spriteBatch.Draw(
-                    texture: _textureStore.Get("Content/heart.png"),
+                    texture: _textureStore.Get(iconName),
                     destinationRectangle: new Rectangle(
-                            (int)heartPosition.X,
-                            (int)heartPosition.Y,
-                            96,
-                            96
+                            (int)iconPosition.X,
+                            (int)iconPosition.Y,
+                            iconSize,
+                            iconSize
                             ),
                     Color.White
                     );
-            DrawBitmapText($"{_gameState.HealthPoints}", healthPointsPosition, Color.White);
+            DrawBitmapText(value, valuePosition, Color.White);
         }
 
         private void DrawBitmapText(string text, Vector2 position, Color color)

@@ -2,12 +2,15 @@
 
 namespace Squence.Core
 {
-    internal class CollisionManager(EntityManager entityManager)
+    internal class CollisionManager(EntityManager entityManager, GameState gameState)
     {
         private readonly EntityManager _entityManager = entityManager;
+        private readonly GameState _gameState = gameState;
+
         public void Update()
         {
             HandleBulletEnemyCollisions();
+            HandleHeroCoinCollisions();
         }
 
         private void HandleBulletEnemyCollisions()
@@ -21,6 +24,18 @@ namespace Squence.Core
                         _entityManager.RemoveBullet(bullet.Guid);
                         _entityManager.HitEnemy(enemy.Guid);
                     }
+                }
+            }
+        }
+
+        private void HandleHeroCoinCollisions()
+        {
+            foreach (var coin in _entityManager.Coins.Values)
+            {
+                if (IsRadiusColliding(_entityManager.Hero, coin))
+                {
+                    _entityManager.RemoveCoin(coin.Guid);
+                    _gameState.HandleCoinCollection();
                 }
             }
         }

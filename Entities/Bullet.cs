@@ -20,8 +20,8 @@ namespace Squence.Entities
         public int TextureWidth { get; } = 64;
         public int TextureHeight { get; } = 64;
        
-        public Vector2 Center { get => new(_texturePosition.X + 64 / 2, _texturePosition.Y + 64 / 2); }
-        public float Radius { get; } = 64 / 2;
+        public Vector2 Center { get => new (_texturePosition.X + TextureWidth / 2, _texturePosition.Y + TextureHeight / 2); }
+        public float Radius { get; } = 16;
 
         private readonly BulletType _bulletType = bulletType;
         private readonly float _bulletSpeed = 500f;
