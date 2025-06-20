@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Squence.Core;
+using Squence.Core.Managers;
+using Squence.Core.Services;
+using Squence.Core.States;
+using Squence.Core.UI;
 using Squence.Data;
-using Squence.Entities;
 
 namespace Squence
 {
@@ -11,18 +13,19 @@ namespace Squence
     {
         private readonly GameState _gameState = new();
         private readonly TileMapDefinition _tileMapDefinition = LevelMap.GetTileMapDefinition();
-
+        
         private readonly GraphicsDeviceManager _graphics;
 
-        private EntityManager _entityManager;
-        private TextureStore _textureStore;
         private SpriteBatch _spriteBatch;
+        private UIManager _uiManager;
+        private EntityManager _entityManager;
+        private TileMapManager _tileMapManager;
+        
+        private WaveManager _waveManager;
+        private CollisionManager _collisionManager;
         private DrawingManager _drawingManager;
         private InputManager _inputManager;
-        private TileMapManager _tileMapManager;
-        private CollisionManager _collisionManager;
-        private WaveManager _waveManager;
-
+        
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -37,18 +40,16 @@ namespace Squence
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _entityManager = new EntityManager(_gameState, GraphicsDevice);
-            _textureStore = new TextureStore(GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _drawingManager = new DrawingManager(_spriteBatch, _textureStore, _gameState);
-            _inputManager = new InputManager(_entityManager);
+            _uiManager = new UIManager(_gameState, GraphicsDevice);
+            _entityManager = new EntityManager(_gameState, GraphicsDevice);
             _tileMapManager = new TileMapManager(_tileMapDefinition);
-            _collisionManager = new CollisionManager(_entityManager, _gameState);
+
             _waveManager = new WaveManager(_entityManager, _tileMapDefinition.WavesList);
-
-            // тестирование передвижение врага
-            _entityManager.AddEnemy(new Enemy(_tileMapDefinition.EnemyPathesList[0], _tileMapDefinition.TileSize));
-
+            _collisionManager = new CollisionManager(_entityManager, _gameState);
+            _drawingManager = new DrawingManager(_spriteBatch, new TextureStore(GraphicsDevice));
+            _inputManager = new InputManager(_entityManager, new BuildingManager(_tileMapManager, _uiManager));
+            
             base.Initialize();
         }
 
@@ -67,8 +68,8 @@ namespace Squence
             // TODO: Add your update logic here
             _inputManager.Update(gameTime);
             _entityManager.Update(gameTime);
-            _collisionManager.Update();
             _waveManager.Update(gameTime);
+            _collisionManager.Update();
 
             base.Update(gameTime);
         }
@@ -78,8 +79,13 @@ namespace Squence
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            _drawingManager.DrawTileMap(_tileMapManager);
-            _drawingManager.DrawEntities(_entityManager);
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+            _tileMapManager.Draw(_drawingManager);
+            _entityManager.Draw(_drawingManager);
+            _uiManager.Draw(_drawingManager);
+
+            _spriteBatch.End();
             
             base.Draw(gameTime);
         }

@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Squence.Core.Interfaces;
+using Squence.Core.States;
 using Squence.Data;
 using System.Collections.Generic;
 
-namespace Squence.Core
+namespace Squence.Core.Managers
 {
-    internal class WaveManager(EntityManager entityManager, List<Wave> wavesList)
+    internal class WaveManager(EntityManager entityManager, List<Wave> wavesList): IUpdatable
     {
         private readonly EntityManager _entityManager = entityManager;
         private readonly List<Wave> _wavesList = wavesList;

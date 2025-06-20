@@ -19,11 +19,12 @@
     <None Remove="Content\bullet_fire.png" />
     <None Remove="Content\bullet_ice.png" />
     <None Remove="Content\bullet_lightning.png" />
-    <None Remove="Content\chest.png" />
     <None Remove="Content\coin.png" />
     <None Remove="Content\Font\Nudge Orb.fnt" />
     <None Remove="Content\Font\Nudge Orb_0.png" />
-    <None Remove="Content\heart.png" />
+    <None Remove="Content\Icons\fire_icon.png" />
+    <None Remove="Content\Icons\ice_icon.png" />
+    <None Remove="Content\Icons\lightning_icon.png" />
     <None Remove="Content\tile_build_zone.png" />
     <None Remove="Content\tile_grass.png" />
     <None Remove="Content\tile_road.png" />
@@ -32,34 +33,46 @@
     <Content Include="Content\ball.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bullet_fire.png">
+    <Content Include="Content\Bullets\bullet_fire.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bullet_ice.png">
+    <Content Include="Content\Bullets\bullet_ice.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bullet_lightning.png">
+    <Content Include="Content\Bullets\bullet_lightning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\chest.png">
+    <Content Include="Content\Icons\fire_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\chest_icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\coin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Icons\ice_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\lightning_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Tiles\Building\fire_zone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Font\Nudge Orb_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\heart.png">
+    <Content Include="Content\Icons\heart_icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\tile_build_zone.png">
+    <Content Include="Content\Tiles\Building\tile_build_zone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\tile_grass.png">
+    <Content Include="Content\Tiles\tile_grass.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\tile_road.png">
+    <Content Include="Content\Tiles\tile_road.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

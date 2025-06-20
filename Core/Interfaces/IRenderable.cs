@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace Squence.Core
+namespace Squence.Core.Interfaces
 {
     internal interface IRenderable
     {
@@ -10,5 +10,9 @@ namespace Squence.Core
         Vector2 TexturePosition { get; }
         int TextureWidth { get; }
         int TextureHeight { get; }
+
+        float Rotation { get => 0f; }
+        Vector2 Origin { get => Vector2.Zero; }
+        float Scale { get => 1f; }
     }
 }

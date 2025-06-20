@@ -5,13 +5,12 @@ using MonoGame.Extended.Content.BitmapFonts;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Squence.Core
+namespace Squence.Core.Services
 {
     internal class TextureStore
     {
-        private readonly GraphicsDevice _graphicsDevice;
-
         public BitmapFont BitmapFont { get; private set; }
+        private readonly GraphicsDevice _graphicsDevice;
         private readonly Dictionary<string, Texture2D> _textures = [];
 
         public TextureStore(GraphicsDevice graphicsDevice)

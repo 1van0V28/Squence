@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Squence.Core;
+using Squence.Core.Interfaces;
 using System;
 
 

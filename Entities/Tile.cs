@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Squence.Core;
+using Squence.Core.Interfaces;
 using System;
 
 namespace Squence.Entities
@@ -8,26 +8,27 @@ namespace Squence.Entities
     {
         Grass,
         Road,
-        BuildZone
+        BuildZone,
     }
 
     internal class Tile(TileType tileType, Vector2 tilePosition, int tileSize): IRenderable
     {
-        public readonly TileType TileType = tileType;
+        private readonly TileType _tileType = tileType;
         public Guid Guid { get; } = Guid.NewGuid();
-        public string TextureName { get; } = GetTileTextureName(tileType);
+        public string TextureName { get => GetTileTextureName(); }
         public Vector2 TexturePosition { get; private set; } = tilePosition;
         public int TextureWidth { get; } = tileSize;
         public int TextureHeight { get; } = tileSize;
+        public float Scale { get => TextureWidth / 972f; }
 
-        private static string GetTileTextureName(TileType tileType)
+        protected virtual string GetTileTextureName()
         {
-            return tileType switch
+            return _tileType switch
             {
-                TileType.Grass => "Content/tile_grass.png",
-                TileType.Road => "Content/tile_road.png",
-                TileType.BuildZone => "Content/tile_build_zone.png",
-                _ => "Content/Grass_Middle.png",
+                TileType.Grass => "Content/Tiles/tile_grass.png",
+                TileType.Road => "Content/Tiles/tile_road.png",
+                TileType.BuildZone => "Content/Tiles/tile_build_zone.png",
+                _ => "Content/Tiles/Grass_Middle.png",
             };
         }
     }

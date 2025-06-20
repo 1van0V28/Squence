@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Squence.Core;
+using Squence.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 

@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Squence.Core;
+using Squence.Core.Interfaces;
 using System;
 
 namespace Squence.Entities
 {
     enum BulletType
     {
+        None,
         Fire,
         Ice,
         Lightning
@@ -19,22 +20,24 @@ namespace Squence.Entities
         private Vector2 _texturePosition = bulletPosition;
         public int TextureWidth { get; } = 64;
         public int TextureHeight { get; } = 64;
-       
-        public Vector2 Center { get => new (_texturePosition.X + TextureWidth / 2, _texturePosition.Y + TextureHeight / 2); }
+        public float Rotation { get => (float)Math.Atan2(direction.Y, direction.X) + MathF.PI / -2f; }
+        public Vector2 Origin { get => new(1024f / 2f, 1024f / 2f); }
+        public float Scale { get => TextureWidth / 1024f; }
+
+        public Vector2 Center { get => new(_texturePosition.X + TextureWidth / 2, _texturePosition.Y + TextureHeight / 2); }
         public float Radius { get; } = 16;
 
         private readonly BulletType _bulletType = bulletType;
         private readonly float _bulletSpeed = 500f;
-        public readonly float Rotation = (float)Math.Atan2(direction.Y, direction.X) + MathF.PI / -2f;
 
         private static string GetBulletTextureName(BulletType bulletType)
         {
             return bulletType switch
             {
-                BulletType.Fire => "Content/bullet_fire.png",
-                BulletType.Ice => "Content/bullet_ice.png",
-                BulletType.Lightning => "Content/bullet_lightning.png",
-                _ => "Content/bullet_fire.png"
+                BulletType.Fire => "Content/Bullets/bullet_fire.png",
+                BulletType.Ice => "Content/Bullets/bullet_ice.png",
+                BulletType.Lightning => "Content/Bullets/bullet_lightning.png",
+                _ => "Content/Bullets/bullet_fire.png"
             };
         }
 

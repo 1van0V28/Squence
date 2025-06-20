@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Squence.Core
+namespace Squence.Core.Interfaces
 {
     internal interface IUpdatable
     {

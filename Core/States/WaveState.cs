@@ -1,4 +1,4 @@
-﻿namespace Squence.Core
+﻿namespace Squence.Core.States
 {
     internal class WaveState
     {

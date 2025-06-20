@@ -1,38 +1,35 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Squence.Core.Interfaces;
+using Squence.Core.States;
 using Squence.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace Squence.Core
+namespace Squence.Core.Managers
 {
-    internal class EntityManager
+    internal class EntityManager(GameState gameState, GraphicsDevice graphicsDevice) : IUpdatable, Interfaces.IDrawable
     {
-        public Hero Hero { get; private set; }
+        public Hero Hero { get; private set; } = new Hero(graphicsDevice);
         public readonly Dictionary<Guid, Bullet> Bullets = [];
         public readonly Dictionary<Guid, Enemy> Enemies = [];
         public readonly Dictionary<Guid, Coin> Coins = [];
-        private Random _random = new();
-
-        private readonly GameState _gameState;
-
-        // при создании происходит создание стартовых сущностей
-        public EntityManager(GameState gameState, GraphicsDevice graphicsDevice)
-        {
-            _gameState = gameState;
-            InitEntityManager(graphicsDevice);
-        }
-
-        public void InitEntityManager(GraphicsDevice graphicsDevice)
-        {
-            Hero = new Hero(graphicsDevice);
-        }
+        private readonly GameState _gameState = gameState;
+        private readonly Random _random = new();
 
         public void Update(GameTime gameTime)
         {
             UpdateBullets(gameTime);
             UpdateEnemies(gameTime);
             UpdateCoins(gameTime);
+        }
+
+        public void Draw(DrawingManager drawingManager)
+        {
+            drawingManager.DrawRenderableEntity(Hero);
+            drawingManager.DrawRenderableEntities(Bullets.Values);
+            drawingManager.DrawRenderableEntities(Enemies.Values);
+            drawingManager.DrawRenderableEntities(Coins.Values);
         }
 
         private void UpdateBullets(GameTime gameTime)

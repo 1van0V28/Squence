@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Squence.Core.Interfaces;
+using Squence.Core.States;
 
-namespace Squence.Core
+namespace Squence.Core.Managers
 {
-    internal class CollisionManager(EntityManager entityManager, GameState gameState)
+    internal class CollisionManager(EntityManager entityManager, GameState gameState) // Updatable (gameTime не требуется)
     {
         private readonly EntityManager _entityManager = entityManager;
         private readonly GameState _gameState = gameState;
@@ -47,7 +49,7 @@ namespace Squence.Core
             var radiusA = aEntity.Radius;
             var radiusB = bEntity.Radius;
 
-            return Vector2.Distance(posA, posB) < (radiusA + radiusB);
+            return Vector2.Distance(posA, posB) < radiusA + radiusB;
         }
     }
 }
