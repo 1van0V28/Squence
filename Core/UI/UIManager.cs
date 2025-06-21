@@ -10,7 +10,7 @@ namespace Squence.Core.UI
     internal class UIManager(GameState gameState, GraphicsDevice graphicsDevice): IDrawable
     {
         private readonly HUDPanel _hudPanel = new(gameState);
-        private readonly BuildingPanel _buildingPanel = new(graphicsDevice);
+        private readonly BuildingPanel _buildingPanel = new(gameState, graphicsDevice);
 
         public void Draw(DrawingManager drawingManager)
         {
@@ -18,9 +18,9 @@ namespace Squence.Core.UI
             _buildingPanel.Draw(drawingManager);
         }
         
-        public void ShowBuildingPanel(TileBuildZone tile) // TODO использовать tile для изменения состояния
+        public void ShowBuildingPanelForTile(TileBuildZone tile)
         {
-            _buildingPanel.Show();
+            _buildingPanel.ShowForTile(tile);
         }
 
         public void HideBuildingPanel()
@@ -28,9 +28,9 @@ namespace Squence.Core.UI
             _buildingPanel.Hide();
         }
 
-        public void TryHandleClick(MouseState mouseState)
+        public bool TryHandleClick(MouseState mouseState)
         {
-            _buildingPanel.TryHandleClick(mouseState);
+            return _buildingPanel.TryHandleClick(mouseState);
         }
     }
 }

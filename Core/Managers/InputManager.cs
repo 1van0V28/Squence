@@ -77,9 +77,11 @@ namespace Squence.Core.Managers
         private void UpdateBuilding(MouseState mouseState)
         {
             if (mouseState.LeftButton == ButtonState.Pressed && !_isMouseLeftBuildingPressed)
-            {
-                _buildingManager.TryHandleTileClick(mouseState);
-                _buildingManager.TryHandleUIClick(mouseState);
+            {   
+                if (!_buildingManager.TryHandleUIClick(mouseState))
+                {
+                    _buildingManager.TryHandleTileClick(mouseState);
+                }
                 _isMouseLeftBuildingPressed = true;
             }
 

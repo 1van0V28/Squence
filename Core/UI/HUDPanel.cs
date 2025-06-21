@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Squence.Core.Managers;
+using Squence.Core.Services;
 using Squence.Core.States;
 
 namespace Squence.Core.UI
@@ -10,9 +11,23 @@ namespace Squence.Core.UI
         public void Draw(DrawingManager drawingManager)
         {
             // отображаем количество жизней до проигрыша
-            drawingManager.DrawIconWithValue(new Vector2(20, 20), 80, "Content/Icons/heart_icon.png", $"{_gameState.HealthPoints}");
+            drawingManager.DrawIconWithValue(
+                new Vector2(20, 20),
+                80,
+                10,
+                "Content/Icons/heart_icon.png",
+                $"{_gameState.HealthPoints}",
+                BitmapFontType.HUDPanel
+                );
             // отображаем количество собранных монет
-            drawingManager.DrawIconWithValue(new Vector2(200, 22), 80, "Content/Icons/chest_icon.png", $"{_gameState.MoneyCount}");
+            drawingManager.DrawIconWithValue(
+                new Vector2(200, 22), 
+                80, 
+                10,
+                "Content/Icons/chest_icon.png", 
+                $"{_gameState.MoneyCount}",
+                BitmapFontType.HUDPanel
+                );
         }
     }
 }

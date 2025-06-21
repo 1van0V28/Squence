@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Squence.Core.Interfaces;
 using Squence.Data;
 using Squence.Entities;
 using System.Collections.Generic;

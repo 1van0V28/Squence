@@ -7,24 +7,32 @@ using System.IO;
 
 namespace Squence.Core.Services
 {
+    enum BitmapFontType
+    {
+        HUDPanel,
+        BuildingPanel
+    }
+
     internal class TextureStore
     {
-        public BitmapFont BitmapFont { get; private set; }
+        public BitmapFont HUDPanelBitmapFont { get; private set; }
+        public BitmapFont BuildingPanelBitmapFont { get; private set; }
         private readonly GraphicsDevice _graphicsDevice;
         private readonly Dictionary<string, Texture2D> _textures = [];
 
         public TextureStore(GraphicsDevice graphicsDevice)
         {
             _graphicsDevice = graphicsDevice;
-            InitTextureStore(graphicsDevice);
+            HUDPanelBitmapFont = GetBitmap(graphicsDevice, "Content/Font/Nudge Orb_48.fnt", "Content/Font/Nudge Orb_48_0.png");
+            BuildingPanelBitmapFont = GetBitmap(graphicsDevice, "Content/Font/Nudge Orb_24.fnt", "Content/Font/Nudge Orb_24_0.png");
         }
 
-        private void InitTextureStore(GraphicsDevice graphicsDevice)
+        private static BitmapFont GetBitmap(GraphicsDevice graphicsDevice, string fontFileName, string fontTextureName)
         {
-            var fontFile = BitmapFontFileReader.Read("Content/Font/Nudge Orb.fnt");
+            var fontFile = BitmapFontFileReader.Read(fontFileName);
 
             // Загрузка текстуры, которая используется в этом .fnt
-            var fontTexture = Texture2D.FromFile(graphicsDevice, "Content/Font/Nudge Orb_0.png");
+            var fontTexture = Texture2D.FromFile(graphicsDevice, fontTextureName);
 
             // Преобразование CharacterBlock → BitmapFontCharacter
             var characters = new List<BitmapFontCharacter>();
@@ -42,7 +50,7 @@ namespace Squence.Core.Services
             }
 
             // Создание BitmapFont вручную (используем Info.FontSize и Common.LineHeight)
-            BitmapFont = new BitmapFont(
+            return new BitmapFont(
                 fontFile.FontName ?? "Unknown",
                 fontFile.Info.FontSize,
                 fontFile.Common.LineHeight,

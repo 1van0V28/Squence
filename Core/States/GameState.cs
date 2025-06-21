@@ -14,5 +14,10 @@
         {
             MoneyCount++;
         }
+
+        public void BuildZone(int moneyCost)
+        {
+            MoneyCount -= moneyCost;
+        }
     }
 }

@@ -19,12 +19,18 @@
     <None Remove="Content\bullet_fire.png" />
     <None Remove="Content\bullet_ice.png" />
     <None Remove="Content\bullet_lightning.png" />
+    <None Remove="Content\button.png" />
     <None Remove="Content\coin.png" />
-    <None Remove="Content\Font\Nudge Orb.fnt" />
-    <None Remove="Content\Font\Nudge Orb_0.png" />
+    <None Remove="Content\Font\Nudge Orb_48.fnt" />
+    <None Remove="Content\Font\Nudge Orb_48_0.png" />
+    <None Remove="Content\Icons\cancel_icon.png" />
     <None Remove="Content\Icons\fire_icon.png" />
+    <None Remove="Content\Icons\fire_icon_choice.png" />
+    <None Remove="Content\Icons\fire_icon_lock.png" />
     <None Remove="Content\Icons\ice_icon.png" />
     <None Remove="Content\Icons\lightning_icon.png" />
+    <None Remove="Content\Icons\lightning_icon_choice.png" />
+    <None Remove="Content\Icons\lightning_icon_lock.png" />
     <None Remove="Content\tile_build_zone.png" />
     <None Remove="Content\tile_grass.png" />
     <None Remove="Content\tile_road.png" />
@@ -42,6 +48,18 @@
     <Content Include="Content\Bullets\bullet_lightning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Nudge Orb_48.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Nudge Orb_48_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\cancel_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Icons\fire_icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -51,16 +69,34 @@
     <Content Include="Content\coin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Icons\fire_icon_choice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\fire_icon_lock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Icons\ice_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\ice_icon_choice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\ice_icon_lock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\lightning_icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Icons\lightning_icon_choice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\lightning_icon_lock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Tiles\Building\fire_zone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Font\Nudge Orb_0.png">
+    <Content Include="Content\Font\Nudge Orb_24_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\heart_icon.png">
@@ -77,7 +113,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Font\Nudge Orb.fnt">
+    <Content Include="Content\Font\Nudge Orb_24.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

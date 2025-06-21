@@ -17,16 +17,16 @@ namespace Squence.Core.Managers
             var tile = _tileMapManager.GetTile(tileX, tileY);
             if (tile is TileBuildZone)
             {
-                _uiManager.ShowBuildingPanel(tile as TileBuildZone);
+                _uiManager.ShowBuildingPanelForTile(tile as TileBuildZone);
             } else
             {
                 _uiManager.HideBuildingPanel();
             }
         }
 
-        public void TryHandleUIClick(MouseState mouseState)
+        public bool TryHandleUIClick(MouseState mouseState)
         {
-            _uiManager.TryHandleClick(mouseState);
+            return _uiManager.TryHandleClick(mouseState);
         } 
     }
 }

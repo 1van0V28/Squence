@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.BitmapFonts;
 using Squence.Core.Interfaces;
 using Squence.Core.Services;
 using System.Collections.Generic;
@@ -34,31 +35,37 @@ namespace Squence.Core.Managers
             );
         }
         
-        public void DrawIconWithValue(Vector2 iconPosition, int iconSize, string iconName, string value)
+        public void DrawIconWithValue(Vector2 iconPosition, int iconSize, int paddingX, string iconName, string value, BitmapFontType bitmapFontType)
         {
-            Vector2 valuePosition = new (iconPosition.X + iconSize + 10, iconPosition.Y + 20);
+            var font = GetBitmapFont(bitmapFontType);
+            var textSize = font.MeasureString(value);
+            var textHeight = textSize.Height;
 
-            DrawIcon(iconPosition, iconSize, iconName);
-            DrawBitmapText(value, valuePosition, Color.White);
+            var verticalOffset = (iconSize - textHeight) / 2;
+            Vector2 valuePosition = new(iconPosition.X + iconSize + paddingX, iconPosition.Y + verticalOffset);
+
+            DrawIcon(iconPosition, iconSize, iconSize, iconName);
+            DrawBitmapText(value, valuePosition, Color.White, bitmapFontType);
         }
 
-        public void DrawIcon(Vector2 iconPosition, int iconSize, string iconName)
+        public void DrawIcon(Vector2 iconPosition, int iconWidth, int iconHeight, string iconName)
         {
             _spriteBatch.Draw(
                 texture: _textureStore.Get(iconName),
                 destinationRectangle: new Rectangle(
                     (int)iconPosition.X,
                     (int)iconPosition.Y,
-                    iconSize,
-                    iconSize
+                    iconWidth,
+                    iconHeight
                     ),
                 Color.White
                 );
         }
 
-        public void DrawBitmapText(string text, Vector2 position, Color color)
+        public void DrawBitmapText(string text, Vector2 position, Color color, BitmapFontType bitmapFontType)
         {
-            foreach (var glyph in _textureStore.BitmapFont.GetGlyphs(text, position))
+            var bitmapFont = GetBitmapFont(bitmapFontType);
+            foreach (var glyph in bitmapFont.GetGlyphs(text, position))
             {
                 if (glyph.Character == null)
                 {
@@ -67,6 +74,16 @@ namespace Squence.Core.Managers
                 var region = glyph.Character.TextureRegion;
                 _spriteBatch.Draw(region.Texture, glyph.Position, region.Bounds, color);
             }
+        }
+
+        private BitmapFont GetBitmapFont(BitmapFontType bitmapFontType)
+        {
+            return bitmapFontType switch
+            {
+                BitmapFontType.HUDPanel => _textureStore.HUDPanelBitmapFont,
+                BitmapFontType.BuildingPanel => _textureStore.BuildingPanelBitmapFont,
+                _ => _textureStore.HUDPanelBitmapFont
+            };
         }
     }
 }
