@@ -12,7 +12,5 @@ namespace Squence.Core.Interfaces
         int TextureHeight { get; }
 
         float Rotation { get => 0f; }
-        Vector2 Origin { get => Vector2.Zero; }
-        float Scale { get => 1f; }
     }
 }

@@ -11,7 +11,6 @@ namespace Squence.Entities
         public Vector2 TexturePosition { get; } = texturePosition;
         public int TextureWidth { get; } = 48;
         public int TextureHeight { get; } = 48;
-        public float Scale { get => TextureWidth / 1024f; }
 
         public Vector2 Center { get => new (TexturePosition.X + TextureWidth / 2, TexturePosition.Y + TextureHeight / 2); }
         public float Radius { get; } = 12;

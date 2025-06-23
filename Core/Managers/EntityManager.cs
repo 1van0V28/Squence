@@ -114,10 +114,14 @@ namespace Squence.Core.Managers
             }
         }
 
-        // TODO учитывать тип атаки и тип врага
-        public void HitEnemy(Guid guid)
+        public void SetHeroDirectionType(DirectionType direction)
         {
-            Enemies[guid].Hit();
+            Hero.SetDirectionType(direction);
+        }
+
+        public void HitEnemy(Guid guid, float damage)
+        {
+            Enemies[guid].Hit(damage);
         }
 
         private void ScatterCoins(Enemy enemy)

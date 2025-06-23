@@ -2,14 +2,16 @@
 using Squence.Core.Interfaces;
 using Squence.Core.States;
 using Squence.Data;
+using Squence.Entities;
 using System.Collections.Generic;
 
 namespace Squence.Core.Managers
 {
-    internal class WaveManager(EntityManager entityManager, List<Wave> wavesList): IUpdatable
+    internal class WaveManager(EntityManager entityManager, List<Wave> wavesList, int tileSize): IUpdatable
     {
         private readonly EntityManager _entityManager = entityManager;
         private readonly List<Wave> _wavesList = wavesList;
+        private readonly int _tileSize = tileSize;
 
         private readonly WaveState _waveState = new();
 
@@ -75,7 +77,7 @@ namespace Squence.Core.Managers
 
         private void SpawnEnemy(WavePhase currentWavePhase)
         {
-            _entityManager.AddEnemy(new Entities.Enemy(currentWavePhase.EnemyPath, 64));
+            _entityManager.AddEnemy(new Enemy(currentWavePhase.EnemyPath, _tileSize, currentWavePhase.EnemyType)); // передавать tileSize
             _waveState.AddEnemy();
         }
     }

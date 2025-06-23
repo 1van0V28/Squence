@@ -1,28 +1,40 @@
 ﻿using Microsoft.Xna.Framework;
+using Squence.Core;
 using Squence.Core.Interfaces;
+using Squence.Core.Services;
 using System;
 using System.Collections.Generic;
 
 namespace Squence.Entities
 {
-    internal class Enemy(List<Point> enemyPath, int tileSize): IRenderable, IUpdatable, ICollidable
+
+    public enum EnemyType
+    {
+        Fire,
+        Water,
+        Metal
+    }
+
+    internal class Enemy(List<Point> enemyPath, int tileSize, EnemyType enemyType): IRenderable, IUpdatable, ICollidable
     {
         public Guid Guid { get; } = Guid.NewGuid();
-        public string TextureName { get; } = "Content/ball.png";
+        public string TextureName { get => TextureStore.GetEnemyTextureName(EnemyType, _directionType); }
         public Vector2 TexturePosition { get => _texturePosition; }
         private Vector2 _texturePosition = new Vector2(enemyPath[0].X, enemyPath[0].Y) * tileSize;
-        public int TextureWidth { get; } = 64;
-        public int TextureHeight { get; } = 64;
+        public int TextureWidth { get; } = tileSize;
+        public int TextureHeight { get; } = tileSize;
 
         public Vector2 Center { get => new(_texturePosition.X + 64 / 2, _texturePosition.Y + 64 / 2); }
-        public float Radius { get; } = 64 / 2;
+        public float Radius { get; } = tileSize / 2;
 
         
         private int _currentTargetIndex = 1;
         private readonly int _tileSize = tileSize;
         public bool IsReachGoal { get; private set; } = false;
-        public int HealthPoints { get; private set; } = 3;
+        public float HealthPoints { get; private set; } = 30f;
         private readonly float _enemySpeed = 100f;
+        private DirectionType _directionType = DirectionType.Left;
+        public readonly EnemyType EnemyType = enemyType;
 
         public void Update(GameTime gameTime)
         {
@@ -53,6 +65,8 @@ namespace Squence.Entities
                 distanceToTarget = direction.Length();
             }
 
+            _directionType = GetDirectionType(direction);
+
             direction.Normalize();
             float distanceToMove = _enemySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -63,9 +77,24 @@ namespace Squence.Entities
             _texturePosition += direction * distanceToMove;
         }
 
-        public void Hit()
+        private DirectionType GetDirectionType(Vector2 direction)
         {
-            HealthPoints -= 1;
+            var directionType = _directionType;
+           
+            if (direction.Y <= 0)
+            {
+                directionType = DirectionType.Up;
+            }
+            if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+            {
+                directionType = direction.X > 0 ? DirectionType.Right : DirectionType.Left;
+            }
+            return directionType;
+        }
+
+        public void Hit(float damage)
+        {
+            HealthPoints -= damage;
         }
     }
 }

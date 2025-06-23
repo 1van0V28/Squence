@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Squence.Core;
 using Squence.Core.Interfaces;
+using Squence.Core.Services;
 using System;
 
 namespace Squence.Entities
 {
-    enum BulletType
+    public enum BulletType
     {
         None,
         Fire,
@@ -12,34 +14,27 @@ namespace Squence.Entities
         Lightning
     }
 
-    internal class Bullet(Vector2 bulletPosition, Vector2 direction, BulletType bulletType) : IRenderable, IUpdatable, ICollidable
+    internal class Bullet(
+        Vector2 bulletPosition,
+        Vector2 direction, 
+        BulletType bulletType, 
+        int levelBuilding
+        ) : IRenderable, IUpdatable, ICollidable
     {
         public Guid Guid { get; } = Guid.NewGuid();
-        public string TextureName { get; } = GetBulletTextureName(bulletType);
+        public string TextureName { get => TextureStore.GetBulletTextureName(BulletType); }
         public Vector2 TexturePosition { get => _texturePosition; }
         private Vector2 _texturePosition = bulletPosition;
         public int TextureWidth { get; } = 64;
         public int TextureHeight { get; } = 64;
         public float Rotation { get => (float)Math.Atan2(direction.Y, direction.X) + MathF.PI / -2f; }
-        public Vector2 Origin { get => new(1024f / 2f, 1024f / 2f); }
-        public float Scale { get => TextureWidth / 1024f; }
 
         public Vector2 Center { get => new(_texturePosition.X + TextureWidth / 2, _texturePosition.Y + TextureHeight / 2); }
-        public float Radius { get; } = 16;
+        public float Radius { get; } = 32;
 
-        private readonly BulletType _bulletType = bulletType;
         private readonly float _bulletSpeed = 500f;
-
-        private static string GetBulletTextureName(BulletType bulletType)
-        {
-            return bulletType switch
-            {
-                BulletType.Fire => "Content/Bullets/bullet_fire.png",
-                BulletType.Ice => "Content/Bullets/bullet_ice.png",
-                BulletType.Lightning => "Content/Bullets/bullet_lightning.png",
-                _ => "Content/Bullets/bullet_fire.png"
-            };
-        }
+        public readonly BulletType BulletType = bulletType;
+        public readonly int LevelBuilding = levelBuilding;
 
         public void Update(GameTime gameTime)
         {
@@ -50,6 +45,16 @@ namespace Squence.Entities
         {
             var updatedHeroSpeed = _bulletSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             _texturePosition += direction * updatedHeroSpeed;
+        }
+
+        public static Vector2 GetStartPosition(Hero hero)
+        {
+            if (hero.DirectionType == DirectionType.Down || hero.DirectionType == DirectionType.Right)
+            {
+                return new Vector2(hero.TexturePosition.X + hero.TextureWidth, hero.TexturePosition.Y);
+            }
+
+            return hero.TexturePosition;
         }
     }
 }

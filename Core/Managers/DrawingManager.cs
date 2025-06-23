@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.BitmapFonts;
 using Squence.Core.Interfaces;
 using Squence.Core.Services;
+using Squence.Entities;
 using System.Collections.Generic;
 
 namespace Squence.Core.Managers
@@ -22,14 +23,20 @@ namespace Squence.Core.Managers
         
         public void DrawRenderableEntity(IRenderable entity)
         {
+            var texture = _textureStore.Get(entity.TextureName);
+            var textureOrigin = entity is Bullet ? 
+                new Vector2(texture.Width / 2f, texture.Height / 2f) :
+                Vector2.Zero;
+            var textureScale = entity.TextureWidth / (float)_textureStore.Get(entity.TextureName).Width;
+
             _spriteBatch.Draw(
-                texture: _textureStore.Get(entity.TextureName),
+                texture: texture,
                 position: entity.TexturePosition,
                 sourceRectangle: null,
                 color: Color.White,
                 rotation: entity.Rotation,
-                origin: entity.Origin,
-                scale: entity.Scale,
+                origin: textureOrigin,
+                scale: textureScale,
                 effects: SpriteEffects.None,
                 layerDepth: 0f
             );

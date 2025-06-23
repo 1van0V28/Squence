@@ -2,6 +2,7 @@
 using Squence.Data;
 using Squence.Entities;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Squence.Core.Managers
 {
@@ -11,6 +12,14 @@ namespace Squence.Core.Managers
         public TileMapDefinition TileMapDefinition { get; private set; }
         private readonly Tile[,] _tiles;
 
+        public TileMapManager(TileMapDefinition tileMapDefinition)
+        {
+            TileMapDefinition = tileMapDefinition;
+            _tiles = new Tile[tileMapDefinition.Width, tileMapDefinition.Height];
+
+            InitTileMap(tileMapDefinition);
+        }
+        
         public void Draw(DrawingManager drawingManger)
         {
             for (var i = 0; i < _tiles.GetLength(0); i++)
@@ -20,14 +29,6 @@ namespace Squence.Core.Managers
                     drawingManger.DrawRenderableEntity(_tiles[i, j]);
                 }
             }
-        }
-
-        public TileMapManager(TileMapDefinition tileMapDefinition)
-        {
-            TileMapDefinition = tileMapDefinition;
-            _tiles = new Tile[tileMapDefinition.Width, tileMapDefinition.Height];
-
-            InitTileMap(tileMapDefinition);
         }
 
         public void InitTileMap(TileMapDefinition tileMapDefinition)
@@ -68,6 +69,18 @@ namespace Squence.Core.Managers
         public Tile GetTile(int x, int y)
         {
             return _tiles[x, y];
+        }
+
+        public List<TileBuildZone> GetBuildZones()
+        {
+            List <TileBuildZone> buildZonesList = [];
+            foreach (var buildZone in TileMapDefinition.BuildZoneTiles)
+            {
+                TileBuildZone tile = _tiles[buildZone.X, buildZone.Y] as TileBuildZone;
+                buildZonesList.Add(tile);
+            }
+
+            return buildZonesList;
         }
     }
 }

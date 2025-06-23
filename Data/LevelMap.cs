@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Squence.Entities;
 using System.Collections.Generic;
 
 namespace Squence.Data
@@ -8,7 +9,7 @@ namespace Squence.Data
     {
         public static TileMapDefinition GetTileMapDefinition()
         {
-            var tileSize = 64;
+            var tileSize = 96;
             var width = 14;
             var height = 11;
 
@@ -53,39 +54,39 @@ namespace Squence.Data
             List<Wave> wavesList = [
                 new Wave(
                     [
-                        new WavePhase(5, enemyPathesList[0], 0.4f),
-                        new WavePhase(4, enemyPathesList[1], 0.5f)
+                        new WavePhase(5, EnemyType.Metal, enemyPathesList[0], 1f),
+                        new WavePhase(4, EnemyType.Metal, enemyPathesList[1], 1f)
                     ],
                     2f
                 ),
                 new Wave(
                     [
-                        new WavePhase(6, enemyPathesList[2], 0.35f),
-                        new WavePhase(5, enemyPathesList[0], 0.4f),
-                        new WavePhase(5, enemyPathesList[1], 0.5f)
+                        new WavePhase(6, EnemyType.Water, enemyPathesList[2], 1f),
+                        new WavePhase(5, EnemyType.Fire, enemyPathesList[0], 2f),
+                        new WavePhase(5, EnemyType.Metal, enemyPathesList[1], 1f)
                     ],
                     3f
                 ),
                 new Wave(
                     [
-                        new WavePhase(8, enemyPathesList[2], 0.3f),
-                        new WavePhase(6, enemyPathesList[1], 0.35f),
-                        new WavePhase(4, enemyPathesList[0], 0.4f)
+                        new WavePhase(8, EnemyType.Water, enemyPathesList[2], 2f),
+                        new WavePhase(6, EnemyType.Metal, enemyPathesList[1], 1f),
+                        new WavePhase(4, EnemyType.Fire, enemyPathesList[0], 2f)
                     ],
-                    2.5f
+                    2f
                 ),
                 new Wave(
                     [
-                        new WavePhase(5, enemyPathesList[0], 0.4f),
-                        new WavePhase(5, enemyPathesList[1], 0.4f),
-                        new WavePhase(6, enemyPathesList[2], 0.3f)
+                        new WavePhase(5, EnemyType.Fire, enemyPathesList[0], 2f),
+                        new WavePhase(5, EnemyType.Metal, enemyPathesList[1], 2f),
+                        new WavePhase(6, EnemyType.Water, enemyPathesList[2], 2f)
                     ],
                     3f
                 ),
                 new Wave(
                     [
-                        new WavePhase(7, enemyPathesList[1], 0.35f),
-                        new WavePhase(8, enemyPathesList[2], 0.3f)
+                        new WavePhase(7, EnemyType.Metal, enemyPathesList[1], 1f),
+                        new WavePhase(8, EnemyType.Water, enemyPathesList[2], 1f)
                     ],
                     2f
                 )

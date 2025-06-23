@@ -179,11 +179,11 @@ namespace Squence.Core.UI
             {
                 if (iconBulletType == buildingPanelState.BulletType)
                 {
-                    return GetIconChosenTextureName(iconBulletType);
+                    return TextureStore.GetIconChosenTextureName(iconBulletType);
                 }
                 else
                 {
-                    return GetIconChoiceableTextureName(iconBulletType);
+                    return TextureStore.GetIconChoiceableTextureName(iconBulletType);
                 }
             }
             // блокируем выбор других
@@ -191,46 +191,13 @@ namespace Squence.Core.UI
             {
                 if (iconBulletType == buildingPanelState.BulletType)
                 {
-                    return GetIconChosenTextureName(iconBulletType);
+                    return TextureStore.GetIconChosenTextureName(iconBulletType);
                 }
                 else
                 {
-                    return GetIconLockedTextureName(iconBulletType);
+                    return TextureStore.GetIconLockedTextureName(iconBulletType);
                 }
             }
-        }
-
-        private static string GetIconChosenTextureName(BulletType iconBulletType)
-        {
-            return iconBulletType switch
-            {
-                BulletType.Fire => "Content/Icons/fire_icon.png",
-                BulletType.Lightning => "Content/Icons/lightning_icon.png",
-                BulletType.Ice => "Content/Icons/ice_icon.png",
-                _ => "Content/Icons/fire_icon.png"
-            };
-        }
-
-        private static string GetIconChoiceableTextureName(BulletType iconBulletType)
-        {
-            return iconBulletType switch
-            {
-                BulletType.Fire => "Content/Icons/fire_icon_choice.png",
-                BulletType.Lightning => "Content/Icons/lightning_icon_choice.png",
-                BulletType.Ice => "Content/Icons/ice_icon_choice.png",
-                _ => "Content/Icons/fire_icon_choice.png"
-            };
-        }
-
-        private static string GetIconLockedTextureName(BulletType iconBulletType)
-        {
-            return iconBulletType switch
-            {
-                BulletType.Fire => "Content/Icons/fire_icon_lock.png",
-                BulletType.Lightning => "Content/Icons/lightning_icon_lock.png",
-                BulletType.Ice => "Content/Icons/ice_icon_lock.png",
-                _ => "Content/Icons/fire_icon_lock.png"
-            };
         }
     }
 }

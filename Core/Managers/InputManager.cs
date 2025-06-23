@@ -32,24 +32,30 @@ namespace Squence.Core.Managers
         private void MoveHero(GameTime gameTime, KeyboardState keyboardState)
         {
             var direction = Vector2.Zero;
+            var directionType = DirectionType.Down;
 
             if (keyboardState.IsKeyDown(Keys.W)) 
             {
                 direction.Y -= 1;
+                directionType = DirectionType.Up;
             } 
             if (keyboardState.IsKeyDown(Keys.S))
             {
                 direction.Y += 1;
+                directionType = DirectionType.Down;
             }
             if (keyboardState.IsKeyDown(Keys.A))
             {
                 direction.X -= 1;
+                directionType = DirectionType.Left;
             }
             if (keyboardState.IsKeyDown(Keys.D))
             {
                 direction.X += 1;
+                directionType = DirectionType.Right;
             }
 
+            _entityManager.SetHeroDirectionType(directionType);
             _entityManager.MoveHero(direction, gameTime);
         }
 
@@ -57,13 +63,15 @@ namespace Squence.Core.Managers
         {
             if (mouseState.LeftButton == ButtonState.Pressed && !_isMouseLeftBulletPressed)
             {
-                // TODO поместить вычисление направления движения в static-метод Bullet
                 var mousePosition = new Vector2(mouseState.X, mouseState.Y);
                 var heroPosition = _entityManager.Hero.TexturePosition;
+                var bulletType = _entityManager.Hero.BulletType;
+                var levelBuilding = _entityManager.Hero.LevelBuilding;
 
+                var bulletStartPosition = Bullet.GetStartPosition(_entityManager.Hero);
                 var direction = mousePosition - heroPosition;
                 direction.Normalize();
-                _entityManager.AddBullet(new Bullet(heroPosition, direction, BulletType.Ice));
+                _entityManager.AddBullet(new Bullet(bulletStartPosition, direction, bulletType, levelBuilding));
 
                 _isMouseLeftBulletPressed = true;
             }

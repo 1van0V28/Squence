@@ -45,8 +45,8 @@ namespace Squence
             _entityManager = new EntityManager(_gameState, GraphicsDevice);
             _tileMapManager = new TileMapManager(_tileMapDefinition);
 
-            _waveManager = new WaveManager(_entityManager, _tileMapDefinition.WavesList);
-            _collisionManager = new CollisionManager(_entityManager, _gameState);
+            _waveManager = new WaveManager(_entityManager, _tileMapDefinition.WavesList, _tileMapDefinition.TileSize);
+            _collisionManager = new CollisionManager(_entityManager, _tileMapManager, _gameState);
             _drawingManager = new DrawingManager(_spriteBatch, new TextureStore(GraphicsDevice));
             _inputManager = new InputManager(_entityManager, new BuildingManager(_tileMapManager, _uiManager));
             
