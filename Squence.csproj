@@ -37,6 +37,8 @@
     <None Remove="Content\Icons\lightning_icon.png" />
     <None Remove="Content\Icons\lightning_icon_choice.png" />
     <None Remove="Content\Icons\lightning_icon_lock.png" />
+    <None Remove="Content\Icons\restart_icon.png" />
+    <None Remove="Content\Icons\score_icon.png" />
     <None Remove="Content\Tiles\Building\ice_lvl_1.png" />
     <None Remove="Content\Tiles\Building\ice_lvl_2.png" />
     <None Remove="Content\Tiles\Building\ice_lvl_3.png" />
@@ -153,6 +155,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\heart_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\restart_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\score_icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Tiles\Building\fire_lvl_1.png">

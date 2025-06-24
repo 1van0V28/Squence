@@ -46,6 +46,7 @@ namespace Squence.Core.Managers
             {
                 if (enemy.HealthPoints <= 0)
                 {
+                    _gameState.HandleKillEnemy();
                     RemoveEnemy(enemy.Guid);
                     ScatterCoins(enemy);
                 }

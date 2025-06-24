@@ -83,7 +83,7 @@ namespace Squence.Core.Managers
             }
         }
 
-        private BitmapFont GetBitmapFont(BitmapFontType bitmapFontType)
+        public BitmapFont GetBitmapFont(BitmapFontType bitmapFontType)
         {
             return bitmapFontType switch
             {
@@ -91,6 +91,23 @@ namespace Squence.Core.Managers
                 BitmapFontType.BuildingPanel => _textureStore.BuildingPanelBitmapFont,
                 _ => _textureStore.HUDPanelBitmapFont
             };
+        }
+
+        public void DrawDarkOverlay(GraphicsDevice graphicsDevice)
+        {
+            Texture2D blackTexture = new(graphicsDevice, 1, 1);
+            blackTexture.SetData([Color.Black]);
+
+            spriteBatch.Draw(
+                texture: blackTexture,
+                destinationRectangle: new Rectangle(
+                    0, 
+                    0, 
+                    graphicsDevice.PresentationParameters.BackBufferWidth, 
+                    graphicsDevice.PresentationParameters.BackBufferHeight
+                    ),
+                color: Color.Black * 0.75f // прозрачность от 0 до 1
+            );
         }
     }
 }

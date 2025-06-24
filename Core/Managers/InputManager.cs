@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Squence.Core.Interfaces;
+using Squence.Core.UI;
 using Squence.Entities;
 
 namespace Squence.Core.Managers
@@ -96,6 +97,15 @@ namespace Squence.Core.Managers
             if (mouseState.LeftButton == ButtonState.Released)
             {
                 _isMouseLeftBuildingPressed = false;
+            }
+        }
+
+        public void UpdateGameOver(UIManager uiManager)
+        {
+            var mouseState = Mouse.GetState();
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                uiManager.TryHandleRestartClick(mouseState);
             }
         }
     }
