@@ -38,13 +38,11 @@ namespace Squence.Core.States
         {
             if (buttonType == PanelButtonType.Build)
             {
-                if (gameState.MoneyCount >= LevelUpCost && LevelBuilding <= 2)
+                if (gameState.MoneyCount >= LevelUpCost && LevelBuilding <= 2 && BulletType != BulletType.None)
                 {
                     gameState.HandleBuildZone(LevelUpCost);
                     LevelBuilding++;
                     TileBuildZone.BuildZone(BulletType, LevelBuilding);
-                    
-
                 }
             }
             else

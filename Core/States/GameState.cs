@@ -10,7 +10,7 @@
     internal class GameState
     {
         public int HealthPoints { get; private set; } = 3;
-        public int MoneyCount { get; private set; } = 100;
+        public int MoneyCount { get; private set; } = 300;
         public int ScorePoints { get; private set; } = 0;
         public GameStateType GameStateType { get; private set; } = GameStateType.Play;
 

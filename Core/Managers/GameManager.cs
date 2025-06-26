@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Squence.Core.Interfaces;
 using Squence.Core.Services;
 using Squence.Core.States;
 using Squence.Core.UI;
